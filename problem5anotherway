@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int digit = 0;
+
+bool floatvariable (string token )
+{
+    if(!(( tolower(token[0])>= 'a' and tolower(token[0])<='h') or (tolower(token[0]) >= 'o' and tolower(token[0])<='z')))
+     return false;
+     for( int i = 1; i<token.size(); i++ )
+     {
+        if(isalnum(token[i]) )
+        continue;
+        else
+        return false;
+     }
+     return true;
+}
+bool FloatNumber(string token)
+{
+    
+    int dotpos = 0;
+    int dotcnt = 0;
+     digit = 0;
+    
+    for(int i = 0; i<token.size(); i++)
+    {
+        
+        if(token[i] == '.')
+        {
+            dotcnt++;
+            dotpos = i;
+        }
+        else if(!isdigit(token[i]))
+        return false;
+    }
+    if(dotcnt!=1)
+    return false;
+
+    if(token[0]=='0' && token[1]!='.')
+    return false;
+
+    for(int i = dotpos+1; i<token.size(); i++)
+    {
+        if(!isdigit(token[i]))
+        return false;
+        else
+        digit++;
+    }
+
+    return true;
+    
+}
+
+    
+int main()
+{
+    freopen("problem4.txt", "r", stdin);
+    string s;
+    while(getline(cin, s))
+    {
+        cout << s << "\t";
+
+        if(floatvariable(s))
+        cout << "floatvariable" << endl;
+
+        else if(FloatNumber(s))
+        {
+            if(digit==2)
+            cout<<"floatnum"<<endl;
+            else if(digit>2)
+            cout<<"double"<<endl;
+            else
+            cout<<"invalid"<<endl;
+
+        }
+        else 
+        cout<<"invalid"<<endl;
+    }
+    
+
+    
+}
