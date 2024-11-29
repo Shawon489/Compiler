@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool IntVariable (string token )
+{
+    if(!(( token[0] >= 'i' and token[0]<='n') or (token[0] >= 'I' and token[0]<='N')))
+     return false;
+
+     for( int i = 1; i<token.size(); i++ )
+     {
+        if(isalnum(token[i]) )
+        continue;
+        else
+        return false;
+     }
+
+     return true;
+}
+bool shortOrLongNumber(string token)
+{
+    if(token[0]=='0') return false;
+    
+    
+        for(int i = 0; i<token.size(); i++)
+        {
+            if(!isdigit(token[i]))
+            return false;
+        }
+    
+    return true;
+}
+
+int main()
+{
+    freopen("problem4.txt", "r", stdin);
+    string s;
+    while(getline(cin, s))
+    {
+        cout << s << "\t";
+        if(IntVariable(s))
+        cout << "IntVar" << endl;
+        else if(shortOrLongNumber(s))
+        {
+            if(s.size()>4)
+            cout<<"long number"<<endl;
+            else
+            cout<<"Short number"<<endl;
+        }
+        else 
+        cout<<"invalid"<<endl;
+    }
+    
+
+    
+}
