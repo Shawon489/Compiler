@@ -30,7 +30,7 @@ string postfix(string word)
         }
         else
         {
-            if (!stk.empty() and (stk.top())>=pre(c))
+            if (!stk.empty() and (pre(stk.top())>=pre(c)))
             {
                 postfixString += c;
                 stk.pop();
